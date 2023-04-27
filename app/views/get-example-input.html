@@ -1,0 +1,124 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Get example input page
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if data['error'] == true %}
+        <div class="govuk-error-summary" data-module="govuk-error-summary">
+          <div role="alert">
+            <h2 class="govuk-error-summary__title">
+              There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+              <ul class="govuk-list govuk-error-summary__list">
+                {% if data['apple_error'] == true %}
+                <li>
+                  <a href="#apple-error">You cannot order more than 10 apples</a>
+                </li>
+                {% endif %}
+                {% if data['banana_error'] == true %}
+                <li>
+                  <a href="#banana-error">You cannot order more than 10 bananas</a>
+                </li>
+                {% endif %}
+                {% if data['pear_error'] == true %}
+                <li>
+                  <a href="#pear-error">You cannot order more than 10 pears</a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+      <h1 class="govuk-heading-l">
+        Fresh fruit delivery orders
+      </h1>
+
+      <p class="govuk-inset-text">
+        Due to supply issues you can only order a maximum of 10 of each product.
+      </p>
+
+      <form class="form" method="post">
+       
+        <div class="govuk-form-group {% if data['apple_error'] == true %} govuk-form-group--error {% endif %}">
+          <label class="govuk-label govuk-label--m" for="apple">
+            How many apples do you require?
+          </label>
+          <div id="event-name-hint" class="govuk-hint">
+            Today's apple price is 89p
+          </div>
+
+          {% if data['apple_error'] == true %} 
+          <p id="apple-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> You cannot order more than 10 apples
+          </p>
+          {% endif %}
+
+          <div class="govuk-input__wrapper">
+            <input class="govuk-input govuk-input--width-5" id="apple" name="no_of_apples" type="number" value="{{data['no_of_apples']}}">
+          </div>
+        </div>
+
+        <div class="govuk-form-group {% if data['banana_error'] == true %} govuk-form-group--error {% endif %}">
+          <label class="govuk-label govuk-label--m" for="banana">
+            How many bananas do you require?
+          </label>
+          <div id="event-name-hint" class="govuk-hint">
+            Today's banana price is 63p
+          </div>
+
+          {% if data['banana_error'] == true %} 
+          <p id="banana-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> You cannot order more than 10 bananas
+          </p>
+          {% endif %}
+
+          <div class="govuk-input__wrapper">
+            <input class="govuk-input govuk-input--width-5" id="banana" name="no_of_bananas" type="number" value="{{data['no_of_bananas']}}">
+          </div>
+        </div>
+
+        <div class="govuk-form-group {% if data['pear_error'] == true %} govuk-form-group--error {% endif %}">
+          <label class="govuk-label govuk-label--m" for="apple">
+            How many pears do you require?
+          </label>
+          <div id="event-name-hint" class="govuk-hint">
+            Today's pear price is 43p
+          </div>
+
+          {% if data['pear_error'] == true %} 
+          <p id="pear-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> You cannot order more than 10 apples
+          </p>
+          {% endif %}
+
+
+          <div class="govuk-input__wrapper">
+            <input class="govuk-input govuk-input--width-5" id="pear" name="no_of_pears" type="number" value="{{data['no_of_pears']}}">
+          </div>
+        </div>
+        
+        {{ govukButton({
+          text: "Add to order"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="You're inspecting the canvas picture" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      {{ pageName }}
+    </h1>
+
+    
+    <div class="govuk-body">
+
+      <p class="govuk-body-l">You flip over the canvas and see 392- written on it</p>
+      <form class="form" action="/east-wall" method="post">
+
+        {{ govukButton({
+          text: "Back",
+          href: "east-wall"
+        }) }}
+
+      </form>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

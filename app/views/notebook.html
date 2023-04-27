@@ -1,0 +1,39 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="You're inspecting the notebook" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      {{ pageName }}
+    </h1>
+
+    
+    <div class="govuk-body">
+
+      <p class="govuk-body-l">The notebook contains a series of Playstation 2 cheat codes for GTA2</p>
+      <p class="govuk-body">
+        <strong>Unlimited ammo</strong> - Right, Left, Up, Down<br>
+        <strong>Add $10,000</strong> - Left, Up, Down, Triangle<br>
+        <strong>Open all doors</strong> - Left, Left, Right, Left<br>
+        <strong>Unlock all vehicles</strong> - Up, Up, Circle, Down<br>
+        <strong>Unlock all weapons</strong> - Down, Up, Up, Up
+      </p>
+      <form class="form" action="/west-wall" method="post">
+
+        {{ govukButton({
+          text: "Back",
+          href: "west-wall"
+        }) }}
+
+      </form>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="You're trying the key in the panel" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      {{ pageName }}
+    </h1>
+
+    
+    <div class="govuk-body">
+
+      <p class="govuk-body-l">The key doesn't fit</p>
+      <form class="form" action="/panel" method="post">
+
+        {{ govukButton({
+          text: "Back",
+          href: "panel"
+        }) }}
+
+      </form>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

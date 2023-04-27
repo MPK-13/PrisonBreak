@@ -1,0 +1,39 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Escape from your prison cell" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <h1 class="govuk-heading-xl">
+      {{ serviceName }}
+    </h1>
+    
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-third">
+        <img class="responsive" src="public/images/jail.png" alt="A pencil sketch of a man sitting in a jail cell">
+      </div>
+      <div class="govuk-grid-column-two-thirds govuk-body">
+        <p>It's midnight, the only sound that can be heard is the prison guards footsteps as they slowly walk away from checking your cell door. You know you only have a short time before they circle back to check on you again.</p>
+        <p>It's time to escape.</p>
+
+       <form method="post">
+
+          {{ govukButton({
+            text: "Start now",
+            href: "room-centre",
+            isStartButton: true
+          }) }}
+      </form>
+      </div>
+    </div>
+  
+    
+    
+  </div>
+</div>
+
+{% endblock %}

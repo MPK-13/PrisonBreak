@@ -1,0 +1,32 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="You're inspecting the scrap of paper" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      {{ pageName }}
+    </h1>
+
+    
+    <div class="govuk-body">
+
+      <p class="govuk-body-l">382# is written on the paper</p>
+      <form class="form" action="/west-wall" method="post">
+
+        {{ govukButton({
+          text: "Back",
+          href: "west-wall"
+        }) }}
+
+      </form>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

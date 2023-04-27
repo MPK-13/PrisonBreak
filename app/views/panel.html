@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="You're inpecting the silver panel" %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <h1 class="govuk-heading-l">
+        {{pageName}}
+      </h1>
+
+    
+      <div class="govuk-body">
+        <p class="govuk-body-l">
+          The silver panel contains a 6 digit combination lock along with a small key hole.
+        </p>
+        <form class="form"  method="post">
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h1 class="govuk-fieldset__heading">
+                  What would you like to do?
+                </h1>
+              </legend>
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="panelaction1" name="panelaction" type="radio" value="back">
+                  <label class="govuk-label govuk-radios__label" for="panelaction1">
+                    Go back
+                  </label>
+                </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="panelaction2" name="panelaction" type="radio" value="combination">
+                    <label class="govuk-label govuk-radios__label" for="panelaction2">
+                      Enter a combination
+                    </label>
+                  </div>
+                  {% if data['haskey'] == "true" %}
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="panelaction3" name="panelaction" type="radio" value="key">
+                    <label class="govuk-label govuk-radios__label" for="panelaction3">
+                      Try the key
+                    </label>
+                  </div>
+                {% endif %}
+              </div>
+            </fieldset>
+          </div>
+          
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

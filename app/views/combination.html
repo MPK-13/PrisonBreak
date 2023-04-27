@@ -1,0 +1,87 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="You're trying the combination on the panel" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% if data['error'] == true %}
+    {{ govukErrorSummary({
+      titleText: "Combination incorrect",
+      errorList: [
+        {
+          text: "Try a different combination",
+          href: "#"
+        }
+      ]
+    }) }}
+    {% endif %}
+
+    <h1 class="govuk-heading-l">
+      {{ pageName }}
+    </h1>
+
+    
+    <div class="govuk-body">
+
+      <form class="form" method="post">
+        {% if data['error'] == true %}
+          {{ govukInput({
+            label: {
+              text: "Enter a combination",
+              classes: "govuk-label--m"
+            },
+            classes: "govuk-input--width-5",
+            id: "combination",
+            name: "combination",
+            errorMessage: {
+              text: "Try a different combination"
+            },
+            prefix: {
+              text: "+"
+            },
+            suffix: {
+              text: "-"
+            },
+            spellcheck: false
+          }) }}
+        {% else %}
+          {{ govukInput({
+            label: {
+              text: "Enter a combination",
+              classes: "govuk-label--m"
+            },
+            classes: "govuk-input--width-5",
+            id: "combination",
+            name: "combination",
+            prefix: {
+              text: "+"
+            },
+            suffix: {
+              text: "-"
+            },
+            spellcheck: false
+          }) }}
+        {% endif %}
+        
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+     
+        {{ govukButton({
+          text: "Go back",
+          href: "panel",
+          classes: "govuk-button--secondary"
+        }) }}
+
+        
+
+      </form>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

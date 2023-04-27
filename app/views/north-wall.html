@@ -1,0 +1,103 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="You're facing the north wall" %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    {% if data['error'] == true %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Please select an option",
+            href: "#"
+          }
+          
+        ]
+      }) }}
+    {% endif %}
+
+      <h1 class="govuk-heading-l">
+        {{pageName}}
+      </h1>
+
+    
+      <div class="govuk-body">
+        <p class="govuk-body-l">You see your cell door. To the right of it is a small silver panel.</p>
+        <form class="form"  method="post">
+
+          {% if data['error'] == true %}
+
+          {{ govukRadios({
+            name: "westwallaction",
+            value: data['westwallaction'],
+            fieldset: {
+              legend: {
+                text: "What would you like to do?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            errorMessage: {
+              text: "Please select an option"
+            },
+            items: [
+              {
+                value: "back",
+                text: "Go back"
+              },
+              {
+                value: "door",
+                text: "Try the cell door"
+              },
+              {
+                value: "panel",
+                text: "Inspect the panel"
+              }
+            ]
+          }) }}
+
+          {% else %}
+            {{ govukRadios({
+              name: "northwallaction",
+              value: data['northwallaction'],
+              fieldset: {
+                legend: {
+                  text: "What would you like to do?",
+                  isPageHeading: true,
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              items: [
+              {
+                value: "back",
+                text: "Go back"
+              },
+              {
+                value: "door",
+                text: "Try the cell door"
+              },
+              {
+                value: "panel",
+                text: "Inspect the panel"
+              }
+              ]
+            }) }}
+
+          {% endif %}
+          
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

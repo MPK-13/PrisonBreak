@@ -1,0 +1,33 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="You wind up the train" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      {{ pageName }}
+    </h1>
+
+    
+    <div class="govuk-body">
+
+      <p class="govuk-body-l">Suddenly a secret panel opens on the train and underneath is printed +187</p>
+     
+      <form class="form" action="/west-wall" method="post">
+
+        {{ govukButton({
+          text: "Close panel and go back",
+          href: "inspect-train"
+        }) }}
+
+      </form>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="You're facing the east wall" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['error'] == true %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Please select an option",
+            href: "#"
+          }
+          
+        ]
+      }) }}
+    {% endif %}
+
+    <h1 class="govuk-heading-l">
+      {{ pageName }}
+    </h1>
+
+    <div class="govuk-body">
+
+
+      <p class="govuk-body-l">You see a small canvas picture attached to the wall</p>
+      <form class="form" method="post">
+
+        {% if data['error'] == true %}
+
+        {{ govukRadios({
+          name: "eastwallaction",
+          value: data['eastwallaction'],
+          fieldset: {
+            legend: {
+              text: "What would you like to do?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          errorMessage: {
+            text: "Please select an option"
+          },
+          items: [
+            {
+              value: "back",
+              text: "Go back"
+            },
+            {
+              value: "inspect",
+              text: "Inspect the canvas"
+            }
+          ]
+        }) }}
+
+        {% else %}
+
+        {{ govukRadios({
+          name: "eastwallaction",
+          value: data['eastwallaction'],
+          fieldset: {
+            legend: {
+              text: "What would you like to do?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "back",
+              text: "Go back"
+            },
+            {
+              value: "inspect",
+              text: "Inspect the canvas"
+            }
+          ]
+        }) }}
+
+        {% endif %}
+        
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

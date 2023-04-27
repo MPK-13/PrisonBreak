@@ -1,0 +1,27 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Confirmation page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: "You've bypassed the door lock!"
+      }) 
+    }}
+
+      <p>You hear the door lock click and the cell door slowly creaks open.</p>
+      <p>This is your chance! Run!!</p>
+    </div>
+  </div>
+
+  {{ govukButton({
+    text: "Finish",
+    href: "../manage-prototype/clear-data"
+  }) }}
+
+{% endblock %}

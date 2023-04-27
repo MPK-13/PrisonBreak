@@ -1,0 +1,95 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="You're inspecting the toy train" %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-teo-thirds">
+      
+      {% if data['error'] === true %}
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Please select an option",
+              href: "#"
+            }
+            
+          ]
+        }) }}
+      {% endif %}
+      
+
+      <h1 class="govuk-heading-l">
+        {{pageName}}
+      </h1>
+
+      <div class="govuk-body">
+
+        <p class="govuk-body-l">The wind-up train has a small 
+          {% if data['haskey'] == "true" %}
+            keyhole
+          {% else %}
+            removable key
+          {% endif %}
+
+          on the side
+        </p>
+        <form class="form" method="post">
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h1 class="govuk-fieldset__heading">
+                  What would you like to do?
+                </h1>
+              </legend>
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="keyaction1" name="keyaction" type="radio" value="back">
+                  <label class="govuk-label govuk-radios__label" for="keyaction1">
+                    Go back
+                  </label>
+                </div>
+
+                {% if data['haskey'] == "true" %}
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="keyaction2" name="keyaction" type="radio" value="insertkey">
+                    <label class="govuk-label govuk-radios__label" for="keyaction2">
+                      Insert the key
+                    </label>
+                  </div>
+                {% else %}
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="keyaction3" name="keyaction" type="radio" value="removekey">
+                    <label class="govuk-label govuk-radios__label" for="keyaction3">
+                      Remove the key
+                    </label>
+                  </div>
+                
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="keyaction4" name="keyaction" type="radio" value="wind">
+                    <label class="govuk-label govuk-radios__label" for="keyaction4">
+                      Wind up the train
+                    </label>
+                  </div>
+                {% endif %}
+              </div>
+            </fieldset>
+          </div>
+
+          
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
